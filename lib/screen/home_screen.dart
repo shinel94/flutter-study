@@ -16,7 +16,12 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, '/musicPlayer');
                   },
-                  child: Text("노래 플레이어 화면"))
+                  child: Text("노래 플레이어 화면")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/scheduler');
+                  },
+                  child: Text("일정 관리 화면"))
             ],
           ),
         ),
