@@ -20,13 +20,22 @@ class _DaySelecterState extends State<DaySelecter> {
 
   void scrollToSelectedDate() {
     if (scrollController.hasClients) {
-      final index = widget.selectedDate.day - 1;
+      int index = widget.selectedDate.day - 1;
       final screenWidth = MediaQuery.of(context).size.width;
-      final itemWidth = 58.0; // 각 아이템의 폭
+      const itemWidth = 58.0; // 각 아이템의 폭
+      final daysInMonth = DateUtils.getDaysInMonth(
+          widget.selectedDate.year, widget.selectedDate.month);
+      final maximumCenterIndex = (screenWidth / itemWidth) / 2;
+
+      if (daysInMonth - widget.selectedDate.day <= maximumCenterIndex) {
+        index = daysInMonth - maximumCenterIndex.ceil();
+      }
       final targetScrollOffset =
           index * itemWidth - screenWidth / 2 + itemWidth / 2;
       if (targetScrollOffset > 0) {
         scrollController.jumpTo(targetScrollOffset);
+      } else {
+        scrollController.jumpTo(0);
       }
     }
   }

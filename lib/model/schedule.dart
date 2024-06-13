@@ -8,4 +8,5 @@ class Schedule extends Table {
   IntColumn get startTime => integer()();
   IntColumn get endTime => integer()();
   TextColumn get courtName => text()();
+  IntColumn get gameType => integer()();
 }
